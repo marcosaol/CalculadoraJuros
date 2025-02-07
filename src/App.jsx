@@ -7,6 +7,9 @@ import GoButton from "./components/goButton";
 import RateInput from "./components/rateInput";
 
 function calculateSimpleInterest(time, value, rate) {
+  if (isNaN(time) || isNaN(value) || isNaN(rate)) {
+    return alert("Erro: Insira valores válidos");
+  }
   let percentageRate = rate / 100;
   let interest = value * percentageRate * time;
   let finalValue = interest + Number(value);
