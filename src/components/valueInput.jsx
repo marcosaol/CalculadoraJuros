@@ -1,9 +1,11 @@
-function ValueInput() {
+function ValueInput({ value, setValue }) {
   return (
     <input
       placeholder="Valor"
-      type="numeric"
+      type="number"
       className="rounded-md  shadow-md "
+      value={value}
+      onChange={(event) => setValue(event.target.value)}
     ></input>
   );
 }
