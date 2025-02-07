@@ -39,8 +39,8 @@ function App() {
         </Rectangular>
         {isCalculated && (
           <Rectangular>
-            <Visor Result={`O valor de juros é ${interest}`} />
-            <Visor Result={`O valor final é ${finalValue}`} />
+            <Visor Result={`O valor de juros é ${interest.toFixed(2)}`} />
+            <Visor Result={`O valor final é ${finalValue.toFixed(2)}`} />
           </Rectangular>
         )}
       </div>

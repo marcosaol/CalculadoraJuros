@@ -3,7 +3,7 @@ function RateInput({ rate, setRate }) {
     <input
       placeholder="Taxa de juros"
       type="number"
-      className="rounded-md  shadow-md "
+      className="rounded-md  shadow-md w-[100%]"
       value={rate}
       onChange={(event) => setRate(event.target.value)}
     ></input>

@@ -3,7 +3,7 @@ function ValueInput({ value, setValue }) {
     <input
       placeholder="Valor"
       type="number"
-      className="rounded-md  shadow-md "
+      className="rounded-md  shadow-md w-[100%]"
       value={value}
       onChange={(event) => setValue(event.target.value)}
     ></input>
