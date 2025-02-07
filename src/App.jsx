@@ -1,20 +1,16 @@
 import { useState } from "react";
 import Rectangular from "./components/rectangular";
 import Visor from "./components/visor";
-import Input from "./components/input";
+import TimeInput from "./components/timeInput";
+import ValueInput from "./components/valueInput";
 
 function App() {
   return (
     <>
-      <div className="h-screen w-screen flex justify-center bg-custom-green p-[10vh]">
+      <div className="h-screen w-screen flex justify-center bg-custom-green p-10">
         <Rectangular>
-          <Input
-            placeholder="Digite o valor"
-            type="numeric"
-            width={45}
-            heigth={5}
-          />
-          <Input placeholder="Meses" type="numeric" width={45} heigth={5} />
+          <TimeInput />
+          <ValueInput />
         </Rectangular>
       </div>
     </>

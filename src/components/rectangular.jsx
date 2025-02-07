@@ -1,9 +1,6 @@
 function Rectangular({ children }) {
   return (
-    <div
-      className="w-[45vh] h-[30vh] bg-custom-blue rounded-xl shadow-md p-[5vh] flex justify-start
-    flex-wrap"
-    >
+    <div className="w-[800px] sm:w-[300px] h-[200px] bg-custom-blue rounded-xl shadow-md p-5 flex flex-col gap-2">
       {children}
     </div>
   );
