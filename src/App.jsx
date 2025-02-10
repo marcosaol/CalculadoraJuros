@@ -4,30 +4,48 @@ import Visor from "./components/visor";
 import GoButton from "./components/goButton";
 import Input from "./components/input";
 
-function calculateSimpleInterest(time, value, rate) {
-  if (isNaN(time) || isNaN(value) || isNaN(rate)) {
+function calculateSimpleInterest(time, initialValue, periodicValue, rate) {
+  if (isNaN(time) || isNaN(initialValue) || isNaN(rate)) {
     return alert("Erro: Insira valores válidos");
   }
+  if (isNaN(periodicValue)) {
+    periodicValue = 0;
+  }
+
   let percentageRate = rate / 100;
-  let interest = value * percentageRate * time;
-  let finalValue = interest + Number(value);
-  console.log(interest, finalValue);
+  let interest = initialValue * percentageRate * time;
+
+  let interestOnPeriodicValue = 0;
+  for (let n = 1; n < time; n++) {
+    interestOnPeriodicValue += periodicValue * percentageRate * n;
+  }
+  interest += interestOnPeriodicValue;
+  let finalValue = interest + Number(initialValue) + periodicValue * (time - 1);
   return { interest, finalValue };
 }
 
-function calculateCompoundInterest(time, value, rate) {
-  if (isNaN(time) || isNaN(value) || isNaN(rate)) {
+function calculateCompoundInterest(time, initialValue, periodicValue, rate) {
+  if (isNaN(time) || isNaN(initialValue) || isNaN(rate)) {
     return alert("Erro: Insira valores válidos");
   }
+  if (isNaN(periodicValue)) {
+    periodicValue = 0;
+  }
+
   let percentageRate = rate / 100;
-  let finalValue = value * Math.pow(1 + percentageRate, time);
-  let interest = finalValue - value;
+  let finalValue = initialValue * Math.pow(1 + percentageRate, time);
+  for (let i = 1; i <= time; i++) {
+    finalValue += periodicValue * Math.pow(1 + percentageRate, time - i);
+  }
+
+  let interest = finalValue - (Number(initialValue) + periodicValue * time);
   return { interest, finalValue };
 }
 
 function App() {
   const [time, setTime] = useState();
   const [initialValue, setInitialValue] = useState();
+  const [periodicValue, setPeriodicValue] = useState();
   const [rate, setRate] = useState();
   const [interest, setInterest] = useState(null);
   const [finalValue, setFinalValue] = useState(null);
@@ -39,12 +57,14 @@ function App() {
       ({ interest, finalValue } = calculateSimpleInterest(
         time,
         initialValue,
+        periodicValue,
         rate
       ));
     } else {
       ({ interest, finalValue } = calculateCompoundInterest(
         time,
         initialValue,
+        periodicValue,
         rate
       ));
     }
@@ -62,6 +82,11 @@ function App() {
             value={initialValue}
             setValue={setInitialValue}
             text={"Valor inicial"}
+          />
+          <Input
+            value={periodicValue}
+            setValue={setPeriodicValue}
+            text={"Valor mensal"}
           />
           <Input value={rate} setValue={setRate} text={"Juros mensal"} />
           <GoButton
