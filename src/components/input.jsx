@@ -1,7 +1,7 @@
-function ValueInput({ value, setValue }) {
+function Input({ value, setValue, text }) {
   return (
     <input
-      placeholder="Valor"
+      placeholder={text}
       type="number"
       className="rounded-md  shadow-md w-[100%]"
       value={value}
@@ -10,4 +10,4 @@ function ValueInput({ value, setValue }) {
   );
 }
 
-export default ValueInput;
+export default Input;

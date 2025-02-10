@@ -1,10 +1,8 @@
 import { useState } from "react";
 import Rectangular from "./components/rectangular";
 import Visor from "./components/visor";
-import TimeInput from "./components/timeInput";
-import ValueInput from "./components/valueInput";
 import GoButton from "./components/goButton";
-import RateInput from "./components/rateInput";
+import Input from "./components/input";
 
 function calculateSimpleInterest(time, value, rate) {
   if (isNaN(time) || isNaN(value) || isNaN(rate)) {
@@ -29,7 +27,7 @@ function calculateCompoundInterest(time, value, rate) {
 
 function App() {
   const [time, setTime] = useState();
-  const [value, setValue] = useState();
+  const [initialValue, setInitialValue] = useState();
   const [rate, setRate] = useState();
   const [interest, setInterest] = useState(null);
   const [finalValue, setFinalValue] = useState(null);
@@ -38,9 +36,17 @@ function App() {
   const handleCalculate = (typeInterest) => {
     let interest, finalValue;
     if (typeInterest === 1) {
-      ({ interest, finalValue } = calculateSimpleInterest(time, value, rate));
+      ({ interest, finalValue } = calculateSimpleInterest(
+        time,
+        initialValue,
+        rate
+      ));
     } else {
-      ({ interest, finalValue } = calculateCompoundInterest(time, value, rate));
+      ({ interest, finalValue } = calculateCompoundInterest(
+        time,
+        initialValue,
+        rate
+      ));
     }
     setInterest(interest);
     setFinalValue(finalValue);
@@ -51,9 +57,13 @@ function App() {
     <>
       <div className="h-screen w-screen flex items-center bg-custom-green p-10 flex-col space-y-4 ">
         <Rectangular>
-          <TimeInput time={time} setTime={setTime} />
-          <ValueInput value={value} setValue={setValue} />
-          <RateInput rate={rate} setRate={setRate} />
+          <Input value={time} setValue={setTime} text={"Meses"} />
+          <Input
+            value={initialValue}
+            setValue={setInitialValue}
+            text={"Valor inicial"}
+          />
+          <Input value={rate} setValue={setRate} text={"Juros mensal"} />
           <GoButton
             handleCalculate={handleCalculate}
             text={"Calcular juros simples"}
