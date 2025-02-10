@@ -1,7 +1,7 @@
 function Visor({ Result }) {
   return (
-    <div className="bg-slate-50 w-[100%] h-[30px] shadow-md rounded-md ">
-      {Result}
+    <div className="bg-slate-50 h-[30px] w-[100%] shadow-md rounded-md">
+      <h1>{Result}</h1>
     </div>
   );
 }

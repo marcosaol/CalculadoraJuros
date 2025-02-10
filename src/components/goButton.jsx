@@ -1,7 +1,10 @@
-function GoButton({ handleCalculate }) {
+function GoButton({ handleCalculate, text, typeInterest }) {
   return (
-    <button className="text-white text-[30px]" onClick={handleCalculate}>
-      Ir
+    <button
+      className="text-black font-medium text-[24px]"
+      onClick={() => handleCalculate(typeInterest)}
+    >
+      {text}
     </button>
   );
 }
